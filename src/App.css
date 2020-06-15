@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
-}
+    .App {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100vh;
+    }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+    .draggable-blocks {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+    .wrapper {
+        padding: 50px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #8BC34A;
+    }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+    .droppable-area {
+        background-color: #ffeb3ba3;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
 
-.App-link {
-  color: #61dafb;
-}
+    .droppable-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        height: 50px;
+        width: 200px;
+        border: 1px solid black;
+        background-color: aliceblue;
+        padding: 5px;
+        text-align: center;
+    }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+    .draggable-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 200px;
+        border: 1px solid black;
+        background-color: aliceblue;
+        padding: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    svg {
+        position: absolute;
+        overflow: visible;
+    }
+
+    button {
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+        background-color: #e91e63;
+        color: #fff;
+        font-weight: 600;
+        margin-right: 30px;
+    }
+
+    .save {
+        background-color: #3f51b5;
+    }
+
+    .clear {
+        background-color: #000;
+    }

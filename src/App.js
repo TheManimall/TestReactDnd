@@ -1,24 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useCallback, useState, useEffect } from 'react';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import axios from 'axios';
+
+import DraggableBlocks from "./DraggableBlocks";
+import DroppableArea from "./DroppableArea";
+
 import './App.css';
 
 function App() {
+  const [droppableItems, setDroppableItems] = useState([]);
+
+  useEffect(() => {
+    const initialItems = localStorage.getItem('droppableItems');
+
+    if(initialItems) {
+      setDroppableItems(JSON.parse(initialItems))
+    }
+  }, [])
+
+  const handleDropItem = useCallback((item) => {
+    setDroppableItems(state => [...state, item])
+  }, [setDroppableItems])
+
+  const getExchangeRate = useCallback(() => {
+    return axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&json')
+      .then(({ data }) => (data[0].rate))
+  }, [])
+
+  const handleProcessClick = useCallback( async() => {
+    for (const { type } of droppableItems) {
+      if(type === 'HELLO') {
+        console.log('Hello');
+      } else if (type === 'EXCHANGE_RATE') {
+        const exchangeRate = await getExchangeRate();
+        console.log('Exchange rate UAH to USD:', exchangeRate)
+      }
+    }
+  }, [droppableItems, getExchangeRate]);
+
+  const handleSaveClick = useCallback(() => {
+    localStorage.setItem('droppableItems', JSON.stringify(droppableItems));
+  }, [droppableItems])
+
+  const handleClearClick = useCallback(() => {
+    setDroppableItems([]);
+    localStorage.removeItem('droppableItems');
+  }, [setDroppableItems])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DndProvider backend={HTML5Backend}>
+        <DraggableBlocks
+          onProcess={handleProcessClick}
+          onSave={handleSaveClick}
+          onClear={handleClearClick}
+        />
+        <DroppableArea data={droppableItems} onDrop={handleDropItem}/>
+      </DndProvider>
     </div>
   );
 }
