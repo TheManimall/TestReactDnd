@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import DraggableBlocks from "./DraggableBlocks";
 import DroppableArea from "./DroppableArea";
+import { HELLO, EXCHANGE_RATE } from "./constants";
 
 import './App.css';
 
@@ -30,9 +31,9 @@ function App() {
 
   const handleProcessClick = useCallback( async() => {
     for (const { type } of droppableItems) {
-      if(type === 'HELLO') {
+      if(type === HELLO) {
         console.log('Hello');
-      } else if (type === 'EXCHANGE_RATE') {
+      } else if (type === EXCHANGE_RATE) {
         const exchangeRate = await getExchangeRate();
         console.log('Exchange rate UAH to USD:', exchangeRate)
       }

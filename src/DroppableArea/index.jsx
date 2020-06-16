@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { useDrop } from 'react-dnd'
 import ConnectedLine from "./ConnectedLine";
-
 import PropTypes from 'prop-types';
+
+import { HELLO, EXCHANGE_RATE } from "../constants";
 
 const DroppableArea = ({ data, onDrop }) => {
 	const [, drop] = useDrop({
-		accept: ['HELLO', 'EXCHANGE_RATE'],
+		accept: [HELLO, EXCHANGE_RATE],
 		canDrop: () => data.length < 5,
 		drop: (item, monitor) => {
 			const { x , y } = monitor.getSourceClientOffset();

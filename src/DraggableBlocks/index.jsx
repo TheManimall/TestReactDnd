@@ -1,22 +1,24 @@
 import React from 'react';
-import Item from './Item';
-
 import PropTypes from 'prop-types';
 
-const bloksData = [{
+import Item from './Item';
+import { HELLO, EXCHANGE_RATE } from "../constants";
+
+
+const blocksData = [{
     id: 0,
     name: 'Print \"Hello\"',
-    type: 'HELLO',
+    type: HELLO,
 }, {
     id: 1,
     name: 'Request exchange rate and print',
-    type: 'EXCHANGE_RATE',
+    type: EXCHANGE_RATE,
 }];
 
 const DraggableBlocks = ({ onProcess, onSave, onClear }) => (
   <div className="wrapper">
     <div className="draggable-blocks">
-        {bloksData.map(item => (
+        {blocksData.map(item => (
             <Item
               key={item.id}
               id={item.id}

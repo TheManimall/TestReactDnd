@@ -1,13 +1,13 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+
+import { BLOCK_HEIGHT, BLOCK_WIDTH } from "../constants";
 
 const ConnectedLine = ({ prevLeft, prevTop, left, top }) => (
 	<svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
-		<path d={`M${prevLeft + 211} ${prevTop + 31} C ${prevLeft + 211} ${top + 31}, ${left} ${prevTop + 31}, ${left} ${top + 31}`} stroke="black"
-		      fill="transparent" markerEnd={`url("#arrow")`}/>
-		<circle cx={prevLeft + 211} cy={prevTop + 31} r="4" fill="blue"/>
-		<circle cx={left} cy={top + 31} r="4" fill="red"/>
+		<path d={`M${prevLeft + BLOCK_WIDTH} ${prevTop + BLOCK_HEIGHT} C ${prevLeft + BLOCK_WIDTH} ${top + BLOCK_HEIGHT}, ${left} ${prevTop + BLOCK_HEIGHT}, ${left} ${top + BLOCK_HEIGHT}`} stroke="black" fill="transparent" />
+		<circle cx={prevLeft + BLOCK_WIDTH} cy={prevTop + BLOCK_HEIGHT} r="4" fill="blue"/>
+		<circle cx={left} cy={top + BLOCK_HEIGHT} r="4" fill="red" />
 	</svg>
 );
 

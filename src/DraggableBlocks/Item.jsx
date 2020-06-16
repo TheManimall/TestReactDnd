@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDrag } from 'react-dnd'
-
 import PropTypes from 'prop-types';
+
+import { HELLO, EXCHANGE_RATE } from "../constants";
 
 const Item = ({ name, type, id }) => {
     const [{ isDragging }, drag] = useDrag({
@@ -20,7 +21,7 @@ const Item = ({ name, type, id }) => {
 
 Item.propTypes = {
     name: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['EXCHANGE_RATE', 'HELLO']).isRequired,
+    type: PropTypes.oneOf([HELLO, EXCHANGE_RATE]).isRequired,
     id: PropTypes.number.isRequired,
 }
 

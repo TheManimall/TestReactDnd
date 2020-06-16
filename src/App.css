@@ -8,6 +8,7 @@
     .draggable-blocks {
         width: 300px;
         display: flex;
+        align-items: center;
         flex-direction: column;
     }
 
@@ -75,4 +76,9 @@
 
     .clear {
         background-color: #000;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
     }
